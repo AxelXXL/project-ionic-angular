@@ -1,0 +1,20 @@
+<ion-row class="ion-align-items-center ion-justify-content-center" style="height: 100vh;"> <!-- Establece la altura de la fila -->
+  <ion-col class="ion-text-center">
+    <ion-header>
+      <ion-toolbar>
+        <div class="content ion-text-center">
+          <ion-icon name="videocam-outline" size="large" class="margin-left color-icon"></ion-icon>
+          <ion-title><b>Top peliculas</b></ion-title>
+
+          <ion-button *ngFor="let item of rutas" (click)="navigateTo(item.link)">
+            {{item.title}}
+          </ion-button>
+
+<!-- 
+          <ion-button routerLink="/inicio">Home</ion-button>
+          <ion-button routerLink="/favorites">Mis favoritos</ion-button> -->
+        </div>
+      </ion-toolbar>
+    </ion-header>
+  </ion-col>
+</ion-row>

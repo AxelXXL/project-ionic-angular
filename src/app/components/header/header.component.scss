@@ -1,0 +1,15 @@
+.content {
+    display: flex; /* Utiliza flexbox para centrar el contenido */
+    flex-direction: row; /* Alinea el contenido en columna */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+    height: 100%; /* Permite que el div ocupe toda la altura de su contenedor */
+}
+
+.margin-left{
+    margin-left: 0.5rem;
+}
+
+.color-icon{
+    color: navy;
+}
