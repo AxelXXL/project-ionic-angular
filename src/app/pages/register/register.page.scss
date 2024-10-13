@@ -1,12 +1,13 @@
-ion-content {
-    --padding-start: 20px;
-    --padding-end: 20px;
-    --padding-top: 20px;
-    --padding-bottom: 20px;
-  }
+// ion-content {
+//     --padding-start: 20px;
+//     --padding-end: 20px;
+//     --padding-top: 20px;
+//     --padding-bottom: 20px;
+//   }
   
   ion-grid {
     height: 100%;
+    width: 100rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -14,11 +15,11 @@ ion-content {
   
   form {
     ion-item {
-      margin-bottom: 15px;
+      margin-bottom: 1rem;
     }
   
     ion-button {
-      margin-top: 15px;
+      margin-top: 0.5rem;
     }
   }
   

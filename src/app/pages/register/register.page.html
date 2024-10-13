@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Register</ion-title>
+    <ion-title>Registrate</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +11,7 @@
         <form (ngSubmit)="onRegister()">
           <ion-list>
             <ion-item>
-              <ion-label position="floating">Full Name</ion-label>
+              <ion-label position="floating">Nombre de Usuario</ion-label>
               <ion-input type="text" [(ngModel)]="fullName" name="fullName" required></ion-input>
             </ion-item>
 
@@ -21,20 +21,20 @@
             </ion-item>
 
             <ion-item>
-              <ion-label position="floating">Password</ion-label>
+              <ion-label position="floating">Contraseña</ion-label>
               <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-label position="floating">Confirm Password</ion-label>
+              <ion-label position="floating">Confirma contraseña</ion-label>
               <ion-input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required></ion-input>
             </ion-item>
           </ion-list>
 
-          <ion-button expand="block" type="submit">Register</ion-button>
+          <ion-button expand="block" type="submit">Registrarme</ion-button>
 
           <ion-button expand="block" fill="outline" (click)="goToLogin()">
-            Back to Login
+            Iniciar sesión
           </ion-button>
         </form>
       </ion-col>
