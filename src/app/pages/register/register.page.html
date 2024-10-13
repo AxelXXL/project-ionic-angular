@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-title>Register</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,8 +8,13 @@
   <ion-grid>
     <ion-row class="ion-justify-content-center">
       <ion-col size-md="6" size-sm="12">
-        <form (ngSubmit)="onLogin()">
+        <form (ngSubmit)="onRegister()">
           <ion-list>
+            <ion-item>
+              <ion-label position="floating">Full Name</ion-label>
+              <ion-input type="text" [(ngModel)]="fullName" name="fullName" required></ion-input>
+            </ion-item>
+
             <ion-item>
               <ion-label position="floating">Email</ion-label>
               <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
@@ -19,12 +24,17 @@
               <ion-label position="floating">Password</ion-label>
               <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
             </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Confirm Password</ion-label>
+              <ion-input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required></ion-input>
+            </ion-item>
           </ion-list>
 
-          <ion-button expand="block" type="submit">Login</ion-button>
+          <ion-button expand="block" type="submit">Register</ion-button>
 
-          <ion-button expand="block" fill="outline" (click)="goToRegister()">
-            Register
+          <ion-button expand="block" fill="outline" (click)="goToLogin()">
+            Back to Login
           </ion-button>
         </form>
       </ion-col>
