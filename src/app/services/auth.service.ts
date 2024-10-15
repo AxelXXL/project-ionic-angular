@@ -21,12 +21,13 @@ export class AuthService {
       };
 
       try {
-      const response = await axios.post(this.apiUrl, newUser);
+      const response = await axios.post('https://localhost:44315/api/Register', newUser);
+      console.log(response);
       return response.data;
-    } catch (error) {
+      } catch (error) {
       console.error(error);
       throw error;
     }
-    }
+  }
 
 }

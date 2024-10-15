@@ -1,43 +1,34 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Registrate</ion-title>
+    <ion-title>Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row class="ion-justify-content-center">
-      <ion-col size-md="6" size-sm="12">
-        <form (ngSubmit)="onRegister()">
-          <ion-list>
-            <ion-item>
-              <ion-label position="floating">Nombre de Usuario</ion-label>
-              <ion-input type="text" [(ngModel)]="fullName" name="fullName" required></ion-input>
-            </ion-item>
+  <form (ngSubmit)="onRegister()">
+    <ion-item>
+      <ion-label position="floating">Nombre de usuario</ion-label>
+      <ion-input [(ngModel)]="user.username" name="username" required></ion-input>
+    </ion-item>
 
-            <ion-item>
-              <ion-label position="floating">Email</ion-label>
-              <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
-            </ion-item>
+    <ion-item>
+      <ion-label position="floating">Correo electrónico</ion-label>
+      <ion-input type="email" [(ngModel)]="user.email" name="email" required></ion-input>
+    </ion-item>
 
-            <ion-item>
-              <ion-label position="floating">Contraseña</ion-label>
-              <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
-            </ion-item>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="user.password" name="password" required></ion-input>
+    </ion-item>
 
-            <ion-item>
-              <ion-label position="floating">Confirma contraseña</ion-label>
-              <ion-input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required></ion-input>
-            </ion-item>
-          </ion-list>
+    <ion-item>
+      <ion-select [(ngModel)]="user.idGeneroPeli" name="idGeneroPeli" placeholder="Selecciona tu genero de pelicula favorito" required>
+        <ion-select-option *ngFor="let genero of generos" [value]="genero.ID_GeneroPeli">
+          {{ genero.GeneroPeli }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
 
-          <ion-button expand="block" type="submit">Registrarme</ion-button>
-
-          <ion-button expand="block" fill="outline" (click)="goToLogin()">
-            Iniciar sesión
-          </ion-button>
-        </form>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-button shape="round" type="submit">Registrar</ion-button>
+  </form>
 </ion-content>

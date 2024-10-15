@@ -1,38 +1,52 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { AuthService } from '../../services/auth.service';
+import axios from 'axios';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
-export class RegisterPage {
+export class RegisterPage implements OnInit {
+  user = {
+    username: '',
+    email: '',
+    password: '',
+    idGeneroPeli: 0,
+  };
 
-  fullName: string = '';
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '';
+  generos: any[] = []; // Propiedad para almacenar los géneros
 
-  constructor(private navCtrl: NavController) {}
+  constructor(private navCtrl: NavController, private authService: AuthService) {}
 
-  onRegister() {
-    if (this.password !== this.confirmPassword) {
-      console.log('Passwords do not match');
-      // Aquí podrías mostrar un mensaje de error o usar un Toast
-      return;
-    }
+  ngOnInit() {
+    this.getGenerosList(); // Llama a la función para cargar los géneros
+  }
 
-    if (this.fullName && this.email && this.password && this.confirmPassword) {
-      // Aquí va la lógica de registro, por ejemplo, hacer una llamada a un servicio o API
-      console.log('Registering user:', this.fullName, this.email);
-      // Luego redirige a la página de inicio u otra página
-      this.navCtrl.navigateForward('/home');
-    } else {
-      console.log('All fields are required');
+  async getGenerosList() {
+    try {
+      const response = await axios.get('https://localhost:44315/api/getGeneros');
+      console.log(response);
+      this.generos = response.data; // Almacena los géneros en la propiedad
+    } catch (error) {
+      console.error(error);
+      throw error;
     }
   }
 
-  goToLogin() {
-    this.navCtrl.navigateBack('/login');
+  onRegister() {
+    this.authService.register(this.user)
+      .then(response => {
+        if (response.Success) {
+          alert(response.Message);
+          this.navCtrl.navigateRoot('/login');
+        } else {
+          console.error('Error de registro:', response.Message);
+        }
+      })
+      .catch(error => {
+        console.error('Error en el proceso de registro:', error);
+      });
   }
 }
