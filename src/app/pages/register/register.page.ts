@@ -42,7 +42,8 @@ export class RegisterPage implements OnInit {
           alert(response.Message);
           this.navCtrl.navigateRoot('/login');
         } else {
-          console.error('Error de registro:', response.Message);
+          alert(response.Message);
+          //console.error('Error de registro:', response.Message);
         }
       })
       .catch(error => {

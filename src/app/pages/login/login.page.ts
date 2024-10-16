@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,25 +9,31 @@ import { NavController } from '@ionic/angular';
 })
 export class LoginPage {
 
-  email: string = "";
-  password: string = "";
+  user = {
+    username: '',
+    password: ''
+  };
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private authService: AuthService, private navCtrl: NavController) { }
 
   // Método para manejar el inicio de sesión
   onLogin() {
-    if (this.email && this.password) {
-      // Lógica de autenticación, aquí puedes integrar un servicio o API de autenticación
-      console.log('Logging in with', this.email, this.password);
-      // Redirigir a otra página después de un inicio de sesión exitoso
-      this.navCtrl.navigateForward('/home');
-    } else {
-      console.log('Email and password are required');
-    }
+    this.authService.login(this.user)
+      .then(response => {
+        if(response.Success) {
+          alert(response.Message + " Se redirijira a la pagina de inicio");
+          setTimeout(() => {
+            this.navCtrl.navigateRoot('/inicio')
+          }, 1500);
+        }
+      })
+      .catch(error => {
+        console.error('Error en el proceso de login:', error);
+      });
   }
 
   // Método para redirigir a la página de registro
   goToRegister() {
-    this.navCtrl.navigateForward('/register');
+    this.navCtrl.navigateRoot('/register');
   }
 }

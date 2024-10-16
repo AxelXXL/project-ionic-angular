@@ -6,8 +6,6 @@ import axios from 'axios';
 })
 export class AuthService {
 
-  private apiUrl = 'https://localhost:44315/api';
-
   constructor() { }
 
   //Metodo para registrar
@@ -22,11 +20,25 @@ export class AuthService {
 
       try {
       const response = await axios.post('https://localhost:44315/api/Register', newUser);
-      console.log(response);
+      //console.log(response);
       return response.data;
       } catch (error) {
       console.error(error);
       throw error;
+    }
+  }
+
+  async login(userlog: {password: string; username: string}){
+
+    const loginUser = {
+      User: userlog.username,
+      Password: userlog.password
+    };
+    try {
+      const response = await axios.post('https://localhost:44315/api/Login', loginUser);
+      return response.data;
+    } catch (error) {
+      console.error(error);
     }
   }
 
