@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { MenuController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +10,7 @@ import { NavController } from '@ionic/angular';
 })
 export class HeaderComponent {
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private menu: MenuController, private navCtrl: NavController, private authService: AuthService) { }
 
   rutas: any[] = [
     { title: 'Inicio', link: '/inicio' },
@@ -17,6 +19,20 @@ export class HeaderComponent {
 
   navigateTo(link: string){
     this.navCtrl.navigateForward(link);
+  }
+
+  onLogOut(){
+    this.authService.logout();
+
+    this.navCtrl.navigateForward('/login');
+  }
+
+  openMenu() {
+    this.menu.open();
+  }
+
+  closeMenu() {
+    this.menu.close();
   }
 
 }

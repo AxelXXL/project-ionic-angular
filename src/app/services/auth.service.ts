@@ -42,4 +42,10 @@ export class AuthService {
     }
   }
 
+  logout(){
+    sessionStorage.removeItem('userData');
+
+    sessionStorage.clear();
+  }
+
 }

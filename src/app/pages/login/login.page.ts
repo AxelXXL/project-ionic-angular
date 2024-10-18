@@ -22,9 +22,15 @@ export class LoginPage {
       .then(response => {
         if(response.Success) {
           alert(response.Message + " Se redirijira a la pagina de inicio");
+          //console.log(response.Data);
+          
+          sessionStorage.setItem('userData', JSON.stringify(response.Data));
+          
           setTimeout(() => {
             this.navCtrl.navigateRoot('/inicio')
-          }, 1500);
+          }, 1000);
+        }else{
+          alert(response.Message);
         }
       })
       .catch(error => {
