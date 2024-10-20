@@ -14,11 +14,32 @@
   </ion-content>
 </ion-menu>
 
+<ion-menu side="start" contentId="main-content" id="peliculasMenu"> <!-- Asociamos el menú con el contenido principal -->
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menú peliculas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <app-list-pelis></app-list-pelis> <!-- Componente de la lista de películas -->
+  </ion-content>
+</ion-menu>
+
 <!-- Página principal -->
 <ion-header>
   <app-header></app-header> <!-- Tu componente de encabezado -->
 </ion-header>
 
-<ion-content id="main-content"> <!-- Debe tener el mismo id que el contentId del menú -->
-  <app-list-pelis></app-list-pelis> <!-- Componente de la lista de películas -->
+<ion-content id="main-content">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <!-- Aquí va el contenido principal de la aplicación -->
+        <p>Contenido principal</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+
+

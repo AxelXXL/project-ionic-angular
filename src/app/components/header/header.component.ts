@@ -27,12 +27,4 @@ export class HeaderComponent {
     this.navCtrl.navigateForward('/login');
   }
 
-  openMenu() {
-    this.menu.open();
-  }
-
-  closeMenu() {
-    this.menu.close();
-  }
-
 }
