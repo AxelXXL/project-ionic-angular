@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
 import axios from 'axios';
+import { LoginModel } from 'src/app/models/login-model';
+import { Pelicula } from 'src/app/models/pelicula';
 
 @Component({
   selector: 'app-list-pelis',
@@ -76,27 +78,4 @@ export class ListPelisComponent implements OnInit {
     }, 700);
   }
 
-}
-
-
-interface Pelicula {
-  big_image: string;
-  description: string;
-  genre: string[];
-  id: string;
-  image: string;
-  imdb_link: string;
-  imdbid: string;
-  rank: number;
-  rating: string;
-  thumbnail: string;
-  title: string;
-  year: number;
-}
-
-interface LoginModel {
-  Email: string;
-  UserName: string;
-  ID_GeneroPeli: number;
-  GeneroPeli: string;
 }
