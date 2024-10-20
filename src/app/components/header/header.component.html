@@ -1,21 +1,22 @@
+<ion-toolbar>
+  <!-- Icono a la izquierda -->
+  <ion-buttons slot="start">
+    <ion-icon name="videocam-outline" size="large" class="margin-left color-icon"></ion-icon>
+  </ion-buttons>
 
-<ion-header >
-  <ion-toolbar>
-    <div class="content ion-text-center" >
-      <ion-icon name="videocam-outline" size="large" class="margin-left color-icon"></ion-icon>
-      <ion-title><b>Top peliculas</b></ion-title>
+  <!-- Título centrado -->
+  <ion-title class="ion-text-center"><b>Top Películas</b></ion-title>
 
-      <ion-button *ngFor="let item of rutas" (click)="navigateTo(item.link)">
-        {{item.title}}
-      </ion-button>
+  <!-- Botones a la derecha -->
+  <ion-buttons slot="end" class="ion-hide-sm-down"> <!-- Ocultar en pantallas pequeñas -->
+    <ion-button *ngFor="let item of rutas" (click)="navigateTo(item.link)">
+      {{item.title}}
+    </ion-button>
+    <ion-button color="danger" (click)="onLogOut()">Cerrar sesión</ion-button>
+  </ion-buttons>
 
-      <ion-button color="danger" (click)="onLogOut()">
-        Cerrar sesión
-      </ion-button>
-
-<!-- 
-      <ion-button routerLink="/inicio">Home</ion-button>
-      <ion-button routerLink="/favorites">Mis favoritos</ion-button> -->
-    </div>
-  </ion-toolbar>
-</ion-header>
+  <!-- Menú hamburguesa para pantallas pequeñas -->
+  <ion-buttons slot="end" class="ion-hide-lg-up"> <!-- Mostrar en pantallas pequeñas -->
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+</ion-toolbar>

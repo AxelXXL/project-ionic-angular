@@ -1,2 +1,13 @@
-
-<h1>list pelis</h1>
+<ion-content>
+    <ion-list>
+        <ion-item *ngFor="let item of pelisList;">
+            <ion-avatar slot="start">
+                <img [src]="item.image" alt="Img Peli"/>
+            </ion-avatar>
+            <ion-label>{{item.title}}</ion-label>
+        </ion-item>
+    </ion-list>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="onIonInfinite($event)" [disabled]="!hasMoreData">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más películas..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
