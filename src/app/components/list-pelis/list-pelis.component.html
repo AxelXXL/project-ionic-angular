@@ -1,10 +1,12 @@
 <ion-content>
     <ion-list>
         <ion-item *ngFor="let item of pelisList;">
-            <ion-avatar slot="start">
-                <img [src]="item.image" alt="Img Peli"/>
-            </ion-avatar>
-            <ion-label>{{item.title}}</ion-label>
+                <ion-button fill="clear" (click)="seleccionarPeli(item)">
+                <ion-avatar slot="start">
+                    <img [src]="item.image" alt="Img Peli"/>
+                </ion-avatar>
+                <ion-label>{{item.title}}</ion-label>
+            </ion-button>
         </ion-item>
     </ion-list>
     <ion-infinite-scroll threshold="100px" (ionInfinite)="onIonInfinite($event)" [disabled]="!hasMoreData">

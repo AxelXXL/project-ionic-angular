@@ -1,0 +1,52 @@
+<div *ngIf="peliSeleccionada">
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="4">
+          <ion-img [src]="peliSeleccionada.image" alt="Imagen de la película"></ion-img>
+        </ion-col>
+        <ion-col size="12" size-md="8">
+          <ion-card-header>
+            <ion-card-title><strong>{{peliSeleccionada.title}}</strong></ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label><strong>Año:</strong></ion-label>
+                <ion-label>{{peliSeleccionada.year}}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label><strong>Género:</strong></ion-label>
+                <ion-label>{{peliSeleccionada.genre}}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label><strong>Descripción:</strong></ion-label>
+                <ion-label>{{peliSeleccionada.description}}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label><strong>Rank:</strong></ion-label>
+                <ion-label>{{peliSeleccionada.rank}}</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label><strong>Rating:</strong></ion-label>
+                <ion-label>{{peliSeleccionada.rating}}</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</div>
+
+<div *ngIf="!peliSeleccionada">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="min-height: 70vh;">
+      <ion-col size="12" class="ion-text-center">
+        <ion-icon name="film-outline" size="large" style="font-size: 6rem; color: #ccc;"></ion-icon>
+        <h2 class="ion-padding">Selecciona una película del menú izquierdo deslizando la pantalla.</h2>
+        <p>Explora nuestro catálogo y descubre algo nuevo.</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

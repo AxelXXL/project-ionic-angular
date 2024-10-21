@@ -3,6 +3,7 @@ import { InfiniteScrollCustomEvent } from '@ionic/angular';
 import axios from 'axios';
 import { LoginModel } from 'src/app/models/login-model';
 import { Pelicula } from 'src/app/models/pelicula';
+import { PeliDataService } from 'src/app/services/peli-data.service';
 
 @Component({
   selector: 'app-list-pelis',
@@ -11,6 +12,8 @@ import { Pelicula } from 'src/app/models/pelicula';
 })
 
 export class ListPelisComponent implements OnInit {
+
+  constructor(private peliDataService: PeliDataService){}
 
   storedUserData = sessionStorage.getItem('userData');
   userDataObject: LoginModel | null = null; // Permitir que sea null si no existe
@@ -76,6 +79,11 @@ export class ListPelisComponent implements OnInit {
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 700);
+  }
+
+
+  seleccionarPeli(peli: Pelicula) {
+    this.peliDataService.cambiarPeli(peli); // Enviar la película seleccionada al servicio
   }
 
 }

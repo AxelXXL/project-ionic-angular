@@ -3,17 +3,20 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { IonicModule } from '@ionic/angular';
 import { ListPelisComponent } from './list-pelis/list-pelis.component';
+import { InfoPeliComponent } from './info-peli/info-peli.component';
 
 
 
 @NgModule({
   declarations: [ 
     HeaderComponent,
-    ListPelisComponent
+    ListPelisComponent,
+    InfoPeliComponent
   ],
   exports:[
     HeaderComponent,
-    ListPelisComponent
+    ListPelisComponent,
+    InfoPeliComponent
   ],
   imports: [
     CommonModule,
