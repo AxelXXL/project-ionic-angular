@@ -31,7 +31,12 @@
                 <ion-label><strong>Rating:</strong></ion-label>
                 <ion-label>{{peliSeleccionada.rating}}</ion-label>
               </ion-item>
+              <br/>
+              <ion-item>
+                <ion-button shape="round" size="default" color="success" (click)="saveFavorites(peliSeleccionada)">Guardar en favoritos</ion-button>
+              </ion-item>
             </ion-list>
+            <br/>
           </ion-card-content>
         </ion-col>
       </ion-row>

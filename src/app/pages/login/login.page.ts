@@ -21,7 +21,7 @@ export class LoginPage {
     this.authService.login(this.user)
       .then(response => {
         if(response.Success) {
-          alert(response.Message + " Se redirijira a la pagina de inicio");
+          alert(response.Message + ". Se redirijira a la pagina de inicio");
           //console.log(response.Data);
           
           sessionStorage.setItem('userData', JSON.stringify(response.Data));

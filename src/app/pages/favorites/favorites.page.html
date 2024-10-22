@@ -1,5 +1,46 @@
-<app-header></app-header>
+<ion-menu side="end" contentId="main-content"> <!-- Asociamos el menú con el contenido principal -->
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menú</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item *ngFor="let item of rutas" (click)="navigateTo(item.link)">
+        {{item.title}}
+      </ion-item>
+      <ion-item (click)="onLogOut()">Cerrar sesión</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
 
-<ion-content class="margin-top">
-  <h1>Favoritos</h1>
+<ion-menu side="start" contentId="main-content" id="peliculasMenu"> <!-- Asociamos el menú con el contenido principal -->
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menú peliculas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <app-list-pelis></app-list-pelis> <!-- Componente de la lista de películas -->
+  </ion-content>
+</ion-menu>
+
+<!-- Página principal -->
+<ion-header>
+  <app-header></app-header> <!-- Tu componente de encabezado -->
+</ion-header>
+
+<ion-content id="main-content">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <div>
+          <h2>Listado de pelis favoritas</h2>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+
+
