@@ -4,6 +4,7 @@ import axios from 'axios';
 import { LoginModel } from 'src/app/models/login-model';
 import { Pelicula } from 'src/app/models/pelicula';
 import { PeliDataService } from 'src/app/services/peli-data.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-list-pelis',
@@ -39,8 +40,8 @@ export class ListPelisComponent implements OnInit {
       method: 'GET',
       url: 'https://imdb-top-100-movies.p.rapidapi.com/',
       headers: {
-        'x-rapidapi-key': '32b50a9f4dmsh59022422fe7b514p1f35b1jsn08ce94ba2bb5',
-        'x-rapidapi-host': 'imdb-top-100-movies.p.rapidapi.com'
+        'x-rapidapi-key': environment.rapidApiKey,
+        'x-rapidapi-host': environment.rapidApiHost
       }
     };
   

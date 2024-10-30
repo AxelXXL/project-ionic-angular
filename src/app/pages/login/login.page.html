@@ -8,21 +8,56 @@
   <ion-grid>
     <ion-row class="center-elements">
       <ion-col size-md="12" size-sm="12">
-        <form (ngSubmit)="onLogin()">
+        <form (ngSubmit)="onLogin()" #loginForm="ngForm">
           <ion-list>
+            <!-- Email o Nombre de Usuario -->
             <ion-item>
               <ion-label position="floating">Email o Nombre de usuario</ion-label>
-              <ion-input type="text" [(ngModel)]="user.username" name="username" required></ion-input>
+              <ion-input
+                type="text"
+                [(ngModel)]="user.username"
+                name="username"
+                required
+                minlength="4"
+                #username="ngModel"
+              ></ion-input>
             </ion-item>
+            <!-- Mensaje de error para username -->
+            <ion-text color="danger" *ngIf="username.invalid && username.touched">
+              <p *ngIf="username.errors?.['required']">El nombre de usuario es requerido.</p>
+              <p *ngIf="username.errors?.['minlength']">Debe tener al menos 4 caracteres.</p>
+            </ion-text>
 
+            <!-- Contraseña -->
             <ion-item>
               <ion-label position="floating">Contraseña</ion-label>
-              <ion-input type="password" [(ngModel)]="user.password" name="password" required></ion-input>
+              <ion-input
+                type="password"
+                [(ngModel)]="user.password"
+                name="password"
+                required
+                minlength="5"
+                #password="ngModel"
+              ></ion-input>
             </ion-item>
+            <!-- Mensaje de error para password -->
+            <ion-text color="danger" *ngIf="password.invalid && password.touched">
+              <p *ngIf="password.errors?.['required']">La contraseña es requerida.</p>
+              <p *ngIf="password.errors?.['minlength']">La contraseña debe tener al menos 6 caracteres.</p>
+            </ion-text>
           </ion-list>
 
-          <ion-button shape="round" class="btnLogin" type="submit">Iniciar sesión</ion-button>
+          <!-- Botón de Iniciar sesión -->
+          <ion-button
+            shape="round"
+            class="btnLogin"
+            type="submit"
+            [disabled]="loginForm.invalid"
+          >
+            Iniciar sesión
+          </ion-button>
 
+          <!-- Botón de Registrarme -->
           <ion-button shape="round" fill="outline" (click)="goToRegister()">
             Registrarme
           </ion-button>

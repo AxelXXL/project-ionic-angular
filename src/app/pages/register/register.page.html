@@ -5,30 +5,48 @@
 </ion-header>
 
 <ion-content>
-  <form (ngSubmit)="onRegister()">
+  <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+    <!-- Nombre de usuario -->
     <ion-item>
       <ion-label position="floating">Nombre de usuario</ion-label>
-      <ion-input [(ngModel)]="user.username" name="username" required></ion-input>
+      <ion-input [(ngModel)]="user.username" name="username" required minlength="3" #username="ngModel"></ion-input>
     </ion-item>
+    <ion-note *ngIf="username.invalid && username.touched" color="danger">
+      El nombre de usuario es obligatorio y debe tener al menos 3 caracteres.
+    </ion-note>
 
+    <!-- Correo electrónico -->
     <ion-item>
       <ion-label position="floating">Correo electrónico</ion-label>
-      <ion-input type="email" [(ngModel)]="user.email" name="email" required></ion-input>
+      <ion-input type="email" [(ngModel)]="user.email" name="email" required #email="ngModel"></ion-input>
     </ion-item>
+    <ion-note *ngIf="email.invalid && email.touched" color="danger">
+      Debes introducir un correo electrónico válido.
+    </ion-note>
 
+    <!-- Contraseña -->
     <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="user.password" name="password" required></ion-input>
+      <ion-input type="password" [(ngModel)]="user.password" name="password" required minlength="6" #password="ngModel"></ion-input>
     </ion-item>
+    <ion-note *ngIf="password.invalid && password.touched" color="danger">
+      La contraseña es obligatoria y debe tener al menos 6 caracteres.
+    </ion-note>
 
+    <!-- Selección de género de película favorito -->
     <ion-item>
-      <ion-select [(ngModel)]="user.idGeneroPeli" name="idGeneroPeli" placeholder="Selecciona tu genero de pelicula favorito" required>
+      <ion-label>Género de película favorito</ion-label>
+      <ion-select [(ngModel)]="user.idGeneroPeli" name="idGeneroPeli" required #idGeneroPeli="ngModel">
         <ion-select-option *ngFor="let genero of generos" [value]="genero.ID_GeneroPeli">
           {{ genero.GeneroPeli }}
         </ion-select-option>
       </ion-select>
     </ion-item>
+    <ion-note *ngIf="idGeneroPeli.invalid && idGeneroPeli.touched" color="danger">
+      Debes seleccionar tu género de película favorito.
+    </ion-note>
 
-    <ion-button shape="round" type="submit">Registrarme</ion-button>
+    <!-- Botón de registro -->
+    <ion-button shape="round" type="submit" [disabled]="registerForm.invalid">Registrarme</ion-button>
   </form>
 </ion-content>
