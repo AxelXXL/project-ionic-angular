@@ -25,5 +25,18 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "peliculas-api-cache",
+      "urls": [
+        "https://localhost:44315/api/getTopMovies"
+      ],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "3d",
+        "strategy": "performance"
+      }
+    }
   ]
 }
