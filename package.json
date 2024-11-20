@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "start-pdw": "ng build --configuration production && http-server ./dist/proyecto-u1"
+    "start-pwa": "ng build --configuration production && http-server ./www"
   },
   "private": true,
   "dependencies": {
