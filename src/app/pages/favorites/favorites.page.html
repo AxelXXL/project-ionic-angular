@@ -1,4 +1,5 @@
-<ion-menu side="end" contentId="main-content"> <!-- Asociamos el menú con el contenido principal -->
+<!-- Menú para la navegación general -->
+<ion-menu side="end" contentId="main-content">
   <ion-header>
     <ion-toolbar>
       <ion-title>Menú</ion-title>
@@ -14,10 +15,11 @@
   </ion-content>
 </ion-menu>
 
-<ion-menu side="start" contentId="main-content" id="peliculasMenu"> <!-- Asociamos el menú con el contenido principal -->
+<!-- Menú de películas -->
+<ion-menu side="start" contentId="main-content" id="peliculasMenu">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menú peliculas</ion-title>
+      <ion-title>Menú películas</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
@@ -27,7 +29,7 @@
 
 <!-- Página principal -->
 <ion-header>
-  <app-header></app-header> <!-- Tu componente de encabezado -->
+  <app-header></app-header> <!-- Componente de encabezado -->
 </ion-header>
 
 <ion-content id="main-content">
@@ -36,11 +38,25 @@
       <ion-col size="12">
         <div>
           <h2>Listado de pelis favoritas</h2>
+
+          <!-- Lista de películas -->
+          <ion-list>
+            <ion-item *ngFor="let item of pelisList;">
+              <ion-button fill="clear" (click)="seleccionarPeli(item)">
+                <ion-avatar slot="start">
+                  <img [src]="item.image" alt="Img Peli"/>
+                </ion-avatar>
+                <ion-label>{{item.title}}</ion-label>
+              </ion-button>
+            </ion-item>
+          </ion-list>
+
+          <!-- Scroll infinito -->
+          <ion-infinite-scroll threshold="100px" (ionInfinite)="onIonInfinite($event)" [disabled]="!hasMoreData">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más películas..."></ion-infinite-scroll-content>
+          </ion-infinite-scroll>
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
-
-
-

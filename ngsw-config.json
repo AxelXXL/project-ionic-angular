@@ -30,7 +30,8 @@
     {
       "name": "peliculas-api-cache",
       "urls": [
-        "https://localhost:44315/api/getTopMovies"
+        "https://localhost:44315/api/getTopMovies",
+        "https://localhost:44315/api/GetFavMovies"
       ],
       "cacheConfig": {
         "maxSize": 100,

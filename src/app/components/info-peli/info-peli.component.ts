@@ -39,8 +39,6 @@ export class InfoPeliComponent  implements OnInit {
         genre: newPeliFav.genre.join(', ')  // Convierte el array a una cadena separada por comas
       };
   
-      console.log(newPeliFav);
-      console.log(this.userDataObject);
       const response = await axios.post('https://localhost:44315/api/SaveFavPeli', peliToSend, {
         headers: {
           'Content-Type': 'application/json',

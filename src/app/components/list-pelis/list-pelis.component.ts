@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { InfiniteScrollCustomEvent, NavController } from '@ionic/angular';
 import axios from 'axios';
 import { LoginModel } from 'src/app/models/login-model';
 import { Pelicula } from 'src/app/models/pelicula';
@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 
 export class ListPelisComponent implements OnInit {
 
-  constructor(private peliDataService: PeliDataService){}
+  constructor(private peliDataService: PeliDataService, private navCtrl: NavController,){}
 
   storedUserData = sessionStorage.getItem('userData');
   userDataObject: LoginModel | null = null; // Permitir que sea null si no existe
@@ -85,6 +85,7 @@ export class ListPelisComponent implements OnInit {
 
   seleccionarPeli(peli: Pelicula) {
     this.peliDataService.cambiarPeli(peli); // Enviar la película seleccionada al servicio
+    this.navCtrl.navigateForward('/inicio');
   }
 
 }
