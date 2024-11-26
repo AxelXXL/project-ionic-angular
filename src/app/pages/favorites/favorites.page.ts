@@ -20,6 +20,7 @@ export class FavoritesPage implements OnInit {
   limit = 20;  // Número de elementos a cargar por vez
   offset = 0;  // Controla el desplazamiento (inicio de la siguiente carga)
   hasMoreData = true;  // Verifica si aún hay más datos para cargar
+  idUser: Number | undefined;
 
   constructor(private peliDataService: PeliDataService, private menu: MenuController, private navCtrl: NavController, private authService: AuthService) { }
 
@@ -27,40 +28,15 @@ export class FavoritesPage implements OnInit {
     if (this.storedUserData) {
       this.userDataObject = JSON.parse(this.storedUserData);
     }
-
-    await this.getPelisFav();
-  }
-
-  public async getPelisFav() {
-
-    const idUser = this.userDataObject?.ID_User;
-    const options = {
-      method: 'GET',
-      url: `https://localhost:44315/api/GetFavMovies?idUser=${idUser}`,
-    };
-
-    try {
-      const response = await axios.request(options);
-      
-      const favPelis = response.data.Data.slice(this.offset, this.offset + this.limit);
-
-      if (favPelis.length === 0) {
-        //console.log('No se encontraron más películas del género:', this.userDataObject?.GeneroPeli);
-        this.hasMoreData = false; // No hay más datos
-      } else {
-        this.pelisList = [...favPelis]; // Agrega a la lista existente
-        this.offset += this.limit; // Aumenta el offset para la siguiente carga
-      }
-
-    } catch (error) {
-      console.error('Error al obtener la lista de películas:', error);
-    }
+    this.idUser = this.userDataObject?.ID_User;
+    await this.peliDataService.getPelisFav(this.idUser);
+    this.pelisList = this.peliDataService.favoritos;
   }
 
   async onIonInfinite(ev: InfiniteScrollCustomEvent) {
     // Solo cargar más datos si hay más para cargar
     if (this.hasMoreData) {
-      await this.getPelisFav();
+      await this.peliDataService.getPelisFav(this.idUser);
     }
 
     setTimeout(() => {

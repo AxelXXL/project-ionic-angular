@@ -15,11 +15,11 @@ export class InfoPeliComponent  implements OnInit {
   storedUserData = sessionStorage.getItem('userData');
   userDataObject: LoginModel | null = null;
   peliSeleccionada: Pelicula | null = null;
-
+  favoritos: Pelicula[] = [];
   
   constructor(private peliDataService: PeliDataService, private cd: ChangeDetectorRef) { }
 
-  ngOnInit() {
+  async ngOnInit() {
 
     if (this.storedUserData) {
       this.userDataObject = JSON.parse(this.storedUserData);
@@ -29,7 +29,15 @@ export class InfoPeliComponent  implements OnInit {
       this.peliSeleccionada = peli;
       this.cd.detectChanges();
     });
+
+    const idUser = this.userDataObject?.ID_User;
+    await this.peliDataService.getPelisFav(idUser);
   }
+
+  isFavorite(peli: Pelicula): boolean {
+    return this.peliDataService.favoritos.some(fav => fav.title === peli.title);
+  }
+  
 
   async saveFavorites(newPeliFav: Pelicula ){
     try {

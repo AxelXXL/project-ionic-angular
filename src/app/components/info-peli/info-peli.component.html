@@ -32,9 +32,12 @@
                 <ion-label>{{peliSeleccionada.rating}}</ion-label>
               </ion-item>
               <br/>
-              <ion-item>
-                <ion-button shape="round" size="default" color="success" (click)="saveFavorites(peliSeleccionada)">Guardar en favoritos</ion-button>
+              <ion-item *ngIf="!isFavorite(peliSeleccionada)">
+                <ion-button shape="round" size="default" color="success" (click)="saveFavorites(peliSeleccionada)">
+                  Guardar en favoritos
+                </ion-button>
               </ion-item>
+              
             </ion-list>
             <br/>
           </ion-card-content>
